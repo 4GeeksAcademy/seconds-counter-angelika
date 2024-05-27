@@ -1,26 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
+import SecondsCounter from "./SecondsCounter";
+import TimeList from "./TimeList";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      savedTimes: [],
+    };
+  }
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+  setSavedTimes = (newTimes) => {
+    this.setState({ savedTimes: newTimes });
+  };
+
+  render() {
+    const { savedTimes } = this.state;
+    return (
+      <>
+        <SecondsCounter savedTimes={savedTimes} setSavedTimes={this.setSavedTimes} />
+        <TimeList savedTimes={savedTimes} />
+      </>
+    );
+  }
+}
 
 export default Home;
